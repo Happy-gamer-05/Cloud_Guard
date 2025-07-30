@@ -1,0 +1,1 @@
+{"messageType":"DATA_MESSAGE","owner":"559092303348","logGroup":"nginx_access_log","logStream":"i-0d04b8fee7e1b32f7","subscriptionFilters":["nginx-firehose-subscription-filter"],"logEvents":[{"id":"39109754818832431117381561621284183197924275901270458368","timestamp":1753742059768,"message":"91.224.92.17 - - [28/Jul/2025:22:34:15 +0000] \"GET / HTTP/1.1\" 200 615 \"-\" \"-\""}]}

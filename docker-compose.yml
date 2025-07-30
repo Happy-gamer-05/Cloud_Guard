@@ -1,0 +1,70 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4 
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - elk-net
+
+  logstash:
+    build: ./logstash  # your custom logstash Dockerfile here
+    container_name: logstash
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/geoip/GeoLite2-City.mmdb:/usr/share/logstash/GeoLite2-City.mmdb
+      - ./logstash/geoip/GeoLite2-ASN.mmdb:/usr/share/logstash/GeoLite2-ASN.mmdb
+      - ./logstash/geoip/GeoLite2-Country.mmdb:/usr/share/logstash/GeoLite2-Country.mmdb
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logs/nginx-access.log:/var/log/nginx/access.log:ro
+      - ./logstash/Cloud/s3-logs/data:/usr/share/logstash/s3-logs:ro
+    networks:
+      - elk-net
+
+  webserver:
+    image: nginx:latest
+    container_name: webserver
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount access log so Logstash can read it
+      - ./logs/nginx-access.log:/var/log/nginx/access.log
+      - ./logs/nginx-error.log:/var/log/nginx/error.log
+    command: [ "sh", "-c", "nginx -g 'daemon off;'" ]
+    networks:
+      - elk-net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+    networks:
+      - elk-net
+    
+volumes:
+  esdata:
+
+networks:
+  elk-net:
+    driver: bridge

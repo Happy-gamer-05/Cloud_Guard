@@ -1,0 +1,11 @@
+logs/
+*.log
+*.bak
+*.old
+*.mmdb
+*.tar.gz
+*.zip
+*.pyc
+__pycache__/
+.env
+logstash/cloud/s3-logs/data
