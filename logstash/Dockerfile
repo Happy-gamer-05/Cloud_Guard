@@ -33,7 +33,7 @@ COPY geoip/GeoLite2-City.mmdb /usr/share/logstash/GeoLite2-City.mmdb
 
 
 # Copy your pipeline config (you create this file locally)
-COPY pipeline/logstash.conf /usr/share/logstash/pipeline/logstash.conf
+#COPY pipeline/logstash.conf /usr/share/logstash/pipeline/logstash.conf
 
 # Copy elasticsearch output config if separate (optional)
 # COPY config/logstash.yml /usr/share/logstash/config/logstash.yml

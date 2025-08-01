@@ -1,0 +1,11 @@
+- pipeline.id: s3_logs
+  path.config: "/usr/share/logstash/pipeline/s3_logs.conf"
+
+- pipeline.id: nginx_access
+  path.config: "/usr/share/logstash/pipeline/nginx_access.conf"
+
+- pipeline.id: file_beat_rocky
+  path.config: "/usr/share/logstash/pipeline/file_beat.conf"
+
+- pipeline.id: s3_direct
+  path.config: "/usr/share/logstash/pipeline/s3_direct.conf"

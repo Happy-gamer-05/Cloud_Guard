@@ -19,21 +19,27 @@ services:
       - elk-net
 
   logstash:
-    build: ./logstash  # your custom logstash Dockerfile here
+    #build: ./logstash  # your custom logstash Dockerfile here
+    image: docker.elastic.co/logstash/logstash:8.19.0
     container_name: logstash
+    envoirnment:
+      - AWS_ACCESS_KEY_ID=YOUR_ACTUAL_ACCESS_KEY
+      - AWS_SECRET_ACCESS_KEY=YOUR_ACTUAL_SECRET_KEY
     depends_on:
       - elasticsearch
     ports:
       - "5044:5044"
       - "9600:9600"
     volumes:
+      - ./logstash/Cloud/sincedb:/usr/share/logstash/Cloud/sincedb
       - ./logstash/pipeline:/usr/share/logstash/pipeline
       - ./logstash/geoip/GeoLite2-City.mmdb:/usr/share/logstash/GeoLite2-City.mmdb
       - ./logstash/geoip/GeoLite2-ASN.mmdb:/usr/share/logstash/GeoLite2-ASN.mmdb
       - ./logstash/geoip/GeoLite2-Country.mmdb:/usr/share/logstash/GeoLite2-Country.mmdb
-      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
       - ./logs/nginx-access.log:/var/log/nginx/access.log:ro
-      - ./logstash/Cloud/s3-logs/data:/usr/share/logstash/s3-logs:ro
+      - ./logstash/Cloud/s3-logs/data:/usr/share/logstash/s3-logs
     networks:
       - elk-net
 

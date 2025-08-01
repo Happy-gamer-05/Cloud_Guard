@@ -1,0 +1,22 @@
+#http.host: "0.0.0.0"
+#allow_superuser: true
+#pipeline.buffer.type: heap
+
+#pipeline.ordered: false
+#path.config: ""
+#path.config.reload.automatic: true
+#path.config: /usr/share/logstash/config/pipelines.yml
+#-------------------------------------------------------------------------------
+http.host: "0.0.0.0"
+allow_superuser: true
+pipeline.buffer.type: heap
+
+# Uncomment if you're using unordered pipelines
+# pipeline.ordered: false
+
+# Reload pipelines automatically on changes
+#path.config.reload.automatic: true
+
+# This is correct key to use pipelines.yml
+path.settings: /usr/share/logstash/config
+

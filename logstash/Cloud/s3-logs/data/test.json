@@ -1,0 +1,4 @@
+{"@timestamp":"2025-08-01T20:25:00.000Z", "level":"INFO", "message":"User 'utkarsh' logged in successfully from IP 192.168.1.100."}
+{"@timestamp":"2025-08-01T20:26:00.000Z", "level":"WARN", "message":"Failed to access resource due to permission error."}
+{"@timestamp":"2025-08-01T20:27:00.000Z", "level":"ERROR", "message":"Service unavailable: Database connection timed out."}
+{"@timestamp":"2025-08-01T20:28:00.000Z", "level":"INFO", "message":"Task processing completed in 15.3s.", "details":{"task_id":"1a2b3c", "duration_ms":15300}}

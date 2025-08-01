@@ -1,3 +1,0 @@
-http.host: "0.0.0.0"
-allow_superuser: true
-pipeline.buffer.type: heap
