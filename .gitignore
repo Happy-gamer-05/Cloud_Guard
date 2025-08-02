@@ -1,9 +1,9 @@
 *.bak
 *.old
-
 *.tar.gz
 *.zip
 *.pyc
 __pycache__/
 .env
 logstash/cloud/s3-logs/data
+aws.env
