@@ -22,9 +22,8 @@ services:
     #build: ./logstash  # your custom logstash Dockerfile here
     image: docker.elastic.co/logstash/logstash:8.19.0
     container_name: logstash
-    envoirnment:
-      - AWS_ACCESS_KEY_ID=YOUR_ACTUAL_ACCESS_KEY
-      - AWS_SECRET_ACCESS_KEY=YOUR_ACTUAL_SECRET_KEY
+    env_file:
+      - ./aws.env 
     depends_on:
       - elasticsearch
     ports:

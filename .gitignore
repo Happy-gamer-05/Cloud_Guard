@@ -1,8 +1,6 @@
-logs/
-*.log
 *.bak
 *.old
-*.mmdb
+
 *.tar.gz
 *.zip
 *.pyc
