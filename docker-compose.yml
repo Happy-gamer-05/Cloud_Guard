@@ -5,7 +5,9 @@ services:
     environment:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
-      - xpack.security.enabled=false
+      - ELASTIC_PASSWORD=Ditiss_pass_2025
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
     ulimits:
       memlock:
         soft: -1
@@ -38,7 +40,7 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
       - ./logs/nginx-access.log:/var/log/nginx/access.log:ro
-      - ./logstash/Cloud/s3-logs/data:/usr/share/logstash/s3-logs
+#      - ./logstash/Cloud/s3-logs/data:/usr/share/logstash/s3-logs
     networks:
       - elk-net
 
@@ -58,15 +60,14 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:8.13.4
     container_name: kibana
-    environment:
-      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     depends_on:
       - elasticsearch
     ports:
       - "5601:5601"
     networks:
       - elk-net
-    
 volumes:
   esdata:
 
