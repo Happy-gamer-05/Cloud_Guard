@@ -1,10 +1,10 @@
 #- pipeline.id: s3_logs
 #  path.config: "/usr/share/logstash/pipeline/s3_logs.conf"
 
-- pipeline.id: nginx_access
-  path.config: "/usr/share/logstash/pipeline/nginx_access.conf"
+#- pipeline.id: nginx_access
+#  path.config: "/usr/share/logstash/pipeline/nginx_access.conf"
 
-- pipeline.id: file_beat_rocky
+- pipeline.id: file_beat_aws_2
   path.config: "/usr/share/logstash/pipeline/file_beat.conf"
 
 - pipeline.id: s3_direct
