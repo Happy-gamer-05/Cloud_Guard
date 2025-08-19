@@ -4,8 +4,11 @@
 #- pipeline.id: nginx_access
 #  path.config: "/usr/share/logstash/pipeline/nginx_access.conf"
 
-- pipeline.id: file_beat_aws_2
-  path.config: "/usr/share/logstash/pipeline/file_beat.conf"
+#- pipeline.id: file_beat_aws_2
+#  path.config: "/usr/share/logstash/pipeline/file_beat.conf"
 
-- pipeline.id: s3_direct
-  path.config: "/usr/share/logstash/pipeline/s3_direct.conf"
+#- pipeline.id: s3_direct
+#  path.config: "/usr/share/logstash/pipeline/s3_direct.conf"
+
+- pipeline.id: dvwa_beat
+  path.config: "/usr/share/logstash/pipeline/dvwa_beat.conf"
