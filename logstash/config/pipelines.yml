@@ -10,5 +10,8 @@
 #- pipeline.id: s3_direct
 #  path.config: "/usr/share/logstash/pipeline/s3_direct.conf"
 
-- pipeline.id: dvwa_beat
-  path.config: "/usr/share/logstash/pipeline/dvwa_beat.conf"
+#- pipeline.id: dvwa_beat
+#  path.config: "/usr/share/logstash/pipeline/dvwa_beat.conf"
+
+- pipeline.id: dvwa_dos
+  path.config:  "/usr/share/logstash/pipeline/dvwa_dos_beat.conf"
